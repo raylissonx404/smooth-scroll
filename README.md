@@ -2,7 +2,7 @@
 
 Have you ever wanted to create a button on your page where, when clicked, it smoothly scrolls to a specific section? This repository can help you, even if you don't know anything about JavaScript.
 
-[Click here]() to view the example preview.
+[Click here](https://raylissonx404.github.io/smooth-scroll/) to view the example preview.
 
 ### 👨‍💻 The Code
 

@@ -19,7 +19,7 @@ Notice:
 Focus only on this part of the code. Notice that the __trigger__ identifier is set to target a _class_ (in this case, `btn1`) of a button. I didn't use an ID here because this way, you can add multiple buttons with the same function.
 
 > [!NOTE]
-> The trigger must necessarily be a class.
+> The trigger must necessarily be a class, and the target must be an ID.
 
 It will smoothly scroll to the section identified as __section1__ when clicked. __Offset__ is the margin between the section and the top of the browser (defined in pixels), and __speed__ is the transition speed between one and the other.  The level of smoothness will depend on the speed and the distance from the __trigger__ to the __target__.
 

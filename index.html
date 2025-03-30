@@ -2,87 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Smooth scroll - By raylissonx404</title>
-    <style type="text/css">
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        section {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        span {
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-            color: white;
-        }
-
-        button {
-            margin: 5px;
-            padding: 5px;
-        }
-
-        #section1 {
-            background-color: #00dfae;
-        }
-
-        #section2 {
-            background-color: #00b5ec;
-        }
-
-        #section3 {
-            background-color: #ecb500;
-        }
-    </style>
+    <link rel="icon" href="https://files.catbox.moe/xut16i.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
 </head>
 <body>
-    <section id="section1">
-        <span>This is Section 1</span>
-        <button class="btn2">Go to Section 2</button>
-        <button class="btn3">Go to Section 3</button>
-    </section>
-
-    <section id="section2">
-        <span>This is Section 2</span>
-        <button class="btn1">Go to Section 1</button>
-        <button class="btn3">Go to Section 3</button>
-    </section>
-
-    <section id="section3">
-        <span>This is Section 3</span>
-        <button class="btn1">Go to Section 1</button>
-        <button class="btn2">Go to Section 2</button>
-    </section>
+    <main>
+        <section id="section1">
+            <h2>This is Section 1</h2>
+            <div class="botoesArea">
+                <button class="btn2">Go to Section 2</button>
+                <button class="btn3">Go to Section 3</button>
+            </div>
+        </section>
+        
+        <section id="section2">
+            <h2>This is Section 2</h2>
+            <div class="botoesArea">
+                <button class="btn1">Go to Section 1</button>
+                <button class="btn3">Go to Section 3</button>
+            </div>
+        </section>
+        
+        <section id="section3">
+            <h2>This is Section 3</h2>
+            <div class="botoesArea">
+                <button class="btn1">Go to Section 1</button>
+                <button class="btn2">Go to Section 2</button>
+            </div>
+        </section>
+    </main>
     
     <script>
-        [  
+        [
 
             { trigger: "btn1", target: "section1", offset: 0, speed: 1000 },
             { trigger: "btn2", target: "section2", offset: 0, speed: 1000 },
             { trigger: "btn3", target: "section3", offset: 0, speed: 1000 }
-
-
+        
+        
         ].forEach(({ trigger, target, offset, speed }) => {
-            document.querySelectorAll(`.${trigger}`).forEach(button => {
-                button.addEventListener("click", () => {
-                    const start = window.scrollY, end = document.getElementById(target).offsetTop - offset;
-                    const t0 = performance.now();
-
-                    requestAnimationFrame(function scroll(t) {
-                        const p = Math.min((t - t0) / speed, 1);
-                        window.scrollTo(0, start + (end - start) * (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2));
-                        if (p < 1) requestAnimationFrame(scroll);
-                    });
+            document.getElementById(trigger)?.addEventListener("click", () => {
+                const start = window.scrollY, end = document.getElementById(target).offsetTop - offset, t0 = performance.now();
+                requestAnimationFrame(function step(t) {
+                    const p = Math.min((t - t0) / speed, 1), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+                    window.scrollTo(0, start + (end - start) * e);
+                    if (p < 1) requestAnimationFrame(step);
                 });
             });
         });
